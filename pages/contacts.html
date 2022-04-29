@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPizza</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+</head>
+
+    <body>
+        <header>
+            <nav>
+                <a href="/Pizzaproect/pages/menu.html">Меню</a>
+                <a href="/Pizzaproect/pages/contacts.html">Контакты</a>
+            </nav>
+        </header>
+        <div class="container">
+            <aside>
+               <a href="pizza.html"><i class="fas fa-pizza-slice"></i>Пицца</a>
+               <a href="salates.html"><i class="fas fa-seedling"></i>Салаты</a>
+               <a href="pasta.html"><i class="fas fa-utensils"></i>Паста</a>
+               <a href="drinks.html"><i class="fas fa-wine-glass"></i>Напитки</a>
+            </aside>
+            <main>
+                <h2 class="centered">Контакты</h2>
+                <hr class="linia" />
+                <div class="conteiner-contact">
+                    <div class="col-5 forma-contact">
+                        <h3 class="centered">Оставьте сообщение <i class="fas fa-envelope"></i></h3>
+                        <form autocomplete="off" id="formular">
+                            <input type="text" placeholder="Имя" required id="name" />
+                            <input type="email" placeholder="Email" required id="email" />
+                            <input type="text" placeholder="Тема" required id="tema" />
+                            <textarea placeholder="Сообщение" rows="7" id="message"></textarea>
+                            <input type="button" value="Отправить" id="otpraviti" onclick="send()"/>
+                        </form>
+                    </div>
+
+                    <div class="col-5 telefon-contact">
+                        <h3 class="centered">Телефоны &#9742;</h3>
+                    </div>
+                  
+                </div>
+            </main>
+        </div>
+        <footer>
+            <h1> Кафе пицца - 2022</h1> 
+        </footer>
+         <!--Связь с шаблоном с почтой EmailJs  -->
+        <script>   
+            emailjs.init("tLOfMwsBi139vAjew");
+            function send(){
+                if (document.getElementById("formular").checkValidity()==false) {
+                    document.getElementById("formular").reportValidity();
+                    return;     
+                }
+            var date={
+                name:document.getElementById("name").value,
+                email:document.getElementById("email").value,
+                tema:document.getElementById("tema").value,
+                message:document.getElementById("message").value,
+            };
+            emailjs.send("service_o588a3t","template_ceujiwi",date)
+            .then(function(answer){
+                alert("Сообщение отправлено")
+                document.getElementById("formular").reset();
+            },function(error){
+                alert("Ошибка при отправке")
+            })
+            }
+        </script>
+    </body>
+</html>
